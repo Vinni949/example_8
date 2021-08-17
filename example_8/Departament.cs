@@ -33,10 +33,10 @@ namespace example_8
         /// <param name="departament"></param>
         /// <param name="salary"></param>
         /// <param name="progectCount"></param>
-        public void AddWorker(int number,string name,string firstName,int age,string departament,int salary,int progectCount)
+        public void AddWorker(int number,string name,string firstName,int age,string title,int salary,int progectCount)
         {
             number++;
-            Worker worker = new Worker(number,name,firstName,age,departament,salary,progectCount);
+            Worker worker = new Worker(number,name,firstName,age, title, salary,progectCount);
             workers.Add(worker);
         }
         /// <summary>
@@ -96,29 +96,22 @@ namespace example_8
         /// <summary>
         /// Печать всех сотрудников
         /// </summary>
-        public void Print()
+        public void PrintWorker()
         {
-            foreach (Worker task in workers)
+            foreach (Worker worker in workers)
             {
-                task.Print(new ConsolePrinter());
+                worker.Print(new ConsolePrinter());
                 Console.WriteLine();
             }
         }
-        /// <summary>
-        /// сортировка по номеру
-        /// </summary>
-        public void SortByNumber()
-        {
-            workers.Sort((a, b) => a.Number.CompareTo(b.Number));
-            Print();
-        }
+        
         /// <summary>
         /// Сортировка по имени
         /// </summary>
         public void SortByName()
         {
             workers.Sort((a, b) => a.Name.CompareTo(b.Name));
-            Print();
+            PrintWorker();
         }
         /// <summary>
         /// сортировка по фамилии
@@ -126,7 +119,11 @@ namespace example_8
         public void SortByFirstName()
         {
             workers.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
-            Print();
+            PrintWorker();
+        }
+        public void PrintDepartament(IPrinter printer)
+        {
+            printer.Print("Название департамента: " + Title + "\tДата создания: " + Date);
         }
     }
 }

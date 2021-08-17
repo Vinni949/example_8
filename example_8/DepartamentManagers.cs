@@ -14,9 +14,9 @@ namespace example_8
         /// </summary>
         /// <param name="title"></param>
         /// <param name="date"></param>
-        public void AddDepartament(string title,string date)
+        public void AddDepartament(string title, string date)
         {
-            Departament dep = new Departament(title,date);
+            Departament dep = new Departament(title, date);
             departaments.Add(dep);
         }
 
@@ -25,8 +25,9 @@ namespace example_8
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        public int DeletedByNumber(string title)
+        public int DeletedByTitle()
         {
+            string title = Console.ReadLine();
             int count = 0;
             for (int i = 0; i < departaments.Count; i++)
             {
@@ -37,6 +38,47 @@ namespace example_8
                 }
             }
             return count;
+        }
+
+        public int DeletedByWorker()
+        {
+            string name = Console.ReadLine();
+            int count = 0;
+            for (int i = 0; i < departaments.Count; i++)
+            {
+                departaments[i].DeletedByName(name);
+            }
+            return count;
+        }
+
+        public void PrintWorker()
+        {
+            foreach (Departament dep in departaments)
+            {
+                dep.PrintWorker();
+                Console.WriteLine();
+            }
+        }
+
+        public void PrintDepartament()
+        {
+            foreach (Departament dep in departaments)
+            {
+                dep.PrintDepartament(new ConsolePrinter());
+                Console.WriteLine();
+            }
+        }
+        public void SortWorker()
+        {
+            Console.WriteLine("Введите название департамента для сортировки сотрудников в нем:");
+            string title = Console.ReadLine();
+            for (int i = 0; i < departaments.Count(); i++)
+            {
+                if (departaments[i].Title == title)
+                {
+                    departaments[i].SortByName();
+                }
+            }
         }
     }
 }
