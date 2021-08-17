@@ -35,8 +35,8 @@ namespace example_8
 
         public void Print(IPrinter printer)
         {
-            printer.Print("Запись: " + Number + "\t" + "Имя: " + Name + "\t" + "Фамилия: " + FirstName + "\t" + "Возвраст: " + Age + "\t" + "Департамент: " + Departament
-                +"\t"+"Зарплата: "+ Salary+ "\t" + "Количество проэктов: " +ProgectCount);
+            printer.Print("Запись: " + Number + "\tИмя: " + Name + "\tФамилия: " + FirstName + "\tВозвраст: " + Age + "\tДепартамент: " + Departament
+                +"\tЗарплата: "+ Salary+ "\tКоличество проэктов: " +ProgectCount);
         }
 
     }
