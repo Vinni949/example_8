@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ompp2n/wCCEIc/VE5AJS8f0YtCgcxr8C162SRGhab63ZZP4MANhSQOYMOw0Wii9mf881EBZIaGFT3nWPG4WNvw==",
+  "dgSpecHash": "bdh0e8FkwineJzO+aK4yHnVaB5UXtSNMs/COltoMUPWk6uXmyoQOpFv3zgNmLA2AwiWsB4KlkzXIx7IM2OM/6Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\pumba\\source\\repos\\example_8\\example_8\\example_8.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\pumba\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

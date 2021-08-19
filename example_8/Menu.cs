@@ -12,28 +12,93 @@ namespace example_8
         static DepartamentManagers departamentManagers = new DepartamentManagers();
         public void Show()
         {
+            departamentManagers.DeSerialize();
             bool choice = true;
             while (choice)
             {
+                string text = string.Empty;
                 Console.WriteLine();
                 Console.WriteLine("Введите номер: \n1-Печатать все департаменты, \n2-Печатать всех работников, \n3-Удалить департамент, " +
-                    "\n4-Удалить сотрудника, \n5-Упорядочить записи сотрудников,\n0 - exit");
+                    "\n4-Удалить сотрудника, \n5-Упорядочить записи сотрудников,\n6-добавить департамент,\n7-добавить сотрудника \n0 - exit");
                 switch (Console.ReadKey().Key)
                 {
+                    
                     case ConsoleKey.D1:
-                        departamentManagers.PrintDepartament();
+                        Console.WriteLine();
+                        Console.WriteLine(departamentManagers.PrintDepartament());
                         break;
                     case ConsoleKey.D2:
-                        departamentManagers.PrintWorker();
+                        Console.WriteLine(departamentManagers.PrintWorker());
                         break;
                     case ConsoleKey.D3:
-                        departamentManagers.DeletedByTitle();
+                        Console.WriteLine();
+                        text = Console.ReadLine();
+                        departamentManagers.DeletedByTitle(text);
+                        departamentManagers.Serialize();
                         break;
                     case ConsoleKey.D4:
-                        departamentManagers.DeletedByWorker(); ;
+                        Console.WriteLine();
+                        departamentManagers.DeletedByWorker(text);
+                        departamentManagers.Serialize();
                         break;
                     case ConsoleKey.D5:
-                        departamentManagers.SortWorker(); ;
+                        Console.WriteLine();
+                        departamentManagers.SortWorker();
+                        break;
+                    case ConsoleKey.D6:
+                        Console.WriteLine();
+                        Console.WriteLine("Введите название департамента:");
+                        text = Console.ReadLine();
+                        departamentManagers.AddDepartament(text, DateTime.Now.ToString());
+                        departamentManagers.Serialize();
+                        break;
+                    case ConsoleKey.D7:
+                        Console.WriteLine();
+                        Console.WriteLine("Добавление сотрудника:");
+                        Console.WriteLine("Введите название департамента в который добавить сотрудника:");
+                        string title = Console.ReadLine(); 
+                        Console.WriteLine("Введите табельный номер:");
+                        int number;
+                        if (int.TryParse(Console.ReadLine(), out number))
+                        {
+                            Console.WriteLine("Введите имя:");
+                            string name = Console.ReadLine();
+                            Console.WriteLine("Введите фамилию:");
+                            string firstName = Console.ReadLine();
+                            Console.WriteLine("Введите возраст:");
+                            int age;
+                            if (int.TryParse(Console.ReadLine(), out age))
+                            {
+                                Console.WriteLine("Введите заработную плату:");
+                                int salary ;
+                                if (int.TryParse(Console.ReadLine(), out salary))
+                                {
+                                    Console.WriteLine("Введите количество проэктов которое ведет сотрудник:");
+                                    int progectCount;
+                                    if (int.TryParse(Console.ReadLine(), out progectCount))
+                                    {
+                                        departamentManagers.AddWorkerByTitle(title, number, name, firstName, age, salary, progectCount);
+                                        departamentManagers.Serialize();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Введено не верное значение!");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Введено не верное значение!");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Введено не верное значение!");
+                            }
+                        }
+                        else
+                        { 
+                            Console.WriteLine("Введено не верное значение!");
+                        }
                         break;
                     case ConsoleKey.D0:
                         choice = false;

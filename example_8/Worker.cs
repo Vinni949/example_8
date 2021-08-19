@@ -33,10 +33,10 @@ namespace example_8
             this.ProgectCount = progectCount;
         }
 
-        public void Print(IPrinter printer)
+        public string Print()
         {
-            printer.Print("Запись: " + Number + "\tИмя: " + Name + "\tФамилия: " + FirstName + "\tВозвраст: " + Age + "\tДепартамент: " + Departament
-                +"\tЗарплата: "+ Salary+ "\tКоличество проэктов: " +ProgectCount);
+            return $"\tЗапись:{Number}, \tИмя: { Name}, \tФамилия: { FirstName}, \tВозвраст: { Age}, \tДепартамент: { Departament},\tЗарплата: { Salary}," +
+                $" \tКоличество проэктов: {ProgectCount}";
         }
 
     }

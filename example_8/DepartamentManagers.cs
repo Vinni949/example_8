@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace example_8
 {
@@ -25,9 +28,9 @@ namespace example_8
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        public int DeletedByTitle()
+        public int DeletedByTitle(string title)
         {
-            string title = Console.ReadLine();
+            
             int count = 0;
             for (int i = 0; i < departaments.Count; i++)
             {
@@ -40,33 +43,33 @@ namespace example_8
             return count;
         }
 
-        public int DeletedByWorker()
+        public void DeletedByWorker(string name)
         {
-            string name = Console.ReadLine();
-            int count = 0;
+            
             for (int i = 0; i < departaments.Count; i++)
             {
                 departaments[i].DeletedByName(name);
             }
-            return count;
         }
 
-        public void PrintWorker()
+        public string PrintWorker()
         {
+            string text = string.Empty;
             foreach (Departament dep in departaments)
             {
-                dep.PrintWorker();
-                Console.WriteLine();
+                text+="\n"+dep.PrintWorker();
             }
+            return text;
         }
 
-        public void PrintDepartament()
+        public string PrintDepartament()
         {
+            string text = string.Empty;
             foreach (Departament dep in departaments)
             {
-                dep.PrintDepartament(new ConsolePrinter());
-                Console.WriteLine();
+                text +=dep.PrintDepartament();
             }
+            return text;
         }
         public void SortWorker()
         {
@@ -78,6 +81,46 @@ namespace example_8
                 {
                     departaments[i].SortByName();
                 }
+            }
+        }
+        /// <summary>
+        /// удаление департамента по названию
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public int AddWorkerByTitle(string title, int number, string name, string firstName, int age, int salary, int progectCount)
+        {
+            
+            int count = 0;
+            for (int i = 0; i < departaments.Count; i++)
+            {
+                if (departaments[i].Title == title)
+                {
+                    departaments[i].AddWorker(number,name,firstName,age,title,salary,progectCount);
+                }
+            }
+            return count;
+        }
+
+        /// <summary>
+        /// Сериализация
+        /// </summary>
+        public void Serialize()
+        {
+            using(StreamWriter file=new StreamWriter ("Data.json"))
+            {
+                string json = JsonConvert.SerializeObject(departaments);
+                file.Write(json);
+            }
+        }
+
+        public void DeSerialize()
+        {
+            using (StreamReader file = new StreamReader("Data.json"))
+            {
+                string json;
+                json=file.ReadToEnd();
+                departaments=JsonConvert.DeserializeObject<List<Departament>>(json);
             }
         }
     }

@@ -33,10 +33,10 @@ namespace example_8
         /// <param name="departament"></param>
         /// <param name="salary"></param>
         /// <param name="progectCount"></param>
-        public void AddWorker(int number,string name,string firstName,int age,string title,int salary,int progectCount)
+        public void AddWorker(int number,string name,string firstName,int age,string departament,int salary,int progectCount)
         {
             number++;
-            Worker worker = new Worker(number,name,firstName,age, title, salary,progectCount);
+            Worker worker = new Worker(number,name,firstName,age, departament, salary,progectCount);
             workers.Add(worker);
         }
         /// <summary>
@@ -96,13 +96,14 @@ namespace example_8
         /// <summary>
         /// Печать всех сотрудников
         /// </summary>
-        public void PrintWorker()
+        public string PrintWorker()
         {
+            string text = string.Empty;
             foreach (Worker worker in workers)
             {
-                worker.Print(new ConsolePrinter());
-                Console.WriteLine();
+                text +=worker.Print();
             }
+            return text;
         }
         
         /// <summary>
@@ -121,9 +122,9 @@ namespace example_8
             workers.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
             PrintWorker();
         }
-        public void PrintDepartament(IPrinter printer)
+        public string PrintDepartament()
         {
-            printer.Print("Название департамента: " + Title + "\tДата создания: " + Date);
+            return $"\t{"Название департамента: " + Title + "\tДата создания: " + Date}\n";
         }
     }
 }
