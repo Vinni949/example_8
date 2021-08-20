@@ -122,6 +122,10 @@ namespace example_8
             workers.Sort((a, b) => a.FirstName.CompareTo(b.FirstName));
             PrintWorker();
         }
+        /// <summary>
+        /// вывод департаментов
+        /// </summary>
+        /// <returns></returns>
         public string PrintDepartament()
         {
             return $"\t{"Название департамента: " + Title + "\tДата создания: " + Date}\n";

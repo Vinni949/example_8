@@ -42,7 +42,10 @@ namespace example_8
             }
             return count;
         }
-
+        /// <summary>
+        /// удаление сотрудника
+        /// </summary>
+        /// <param name="name"></param>
         public void DeletedByWorker(string name)
         {
             
@@ -51,7 +54,10 @@ namespace example_8
                 departaments[i].DeletedByName(name);
             }
         }
-
+        /// <summary>
+        /// вывод всех сотрудников
+        /// </summary>
+        /// <returns></returns>
         public string PrintWorker()
         {
             string text = string.Empty;
@@ -61,7 +67,10 @@ namespace example_8
             }
             return text;
         }
-
+        /// <summary>
+        /// вывод всех департаментов
+        /// </summary>
+        /// <returns></returns>
         public string PrintDepartament()
         {
             string text = string.Empty;
@@ -71,6 +80,9 @@ namespace example_8
             }
             return text;
         }
+        /// <summary>
+        /// сортировка сотрудника по именни в заданном департаменте
+        /// </summary>
         public void SortWorker()
         {
             Console.WriteLine("Введите название департамента для сортировки сотрудников в нем:");
@@ -113,7 +125,10 @@ namespace example_8
                 file.Write(json);
             }
         }
-
+        /// <summary>
+        /// Десериализация
+        /// Получение данных из файла
+        /// </summary>
         public void DeSerialize()
         {
             using (StreamReader file = new StreamReader("Data.json"))

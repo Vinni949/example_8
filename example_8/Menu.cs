@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace example_8
 {
@@ -12,6 +14,10 @@ namespace example_8
         static DepartamentManagers departamentManagers = new DepartamentManagers();
         public void Show()
         {
+            if (!(File.Exists("Data.json"))) 
+            {
+                departamentManagers.Serialize();
+            }
             departamentManagers.DeSerialize();
             bool choice = true;
             while (choice)
@@ -79,6 +85,7 @@ namespace example_8
                                     {
                                         departamentManagers.AddWorkerByTitle(title, number, name, firstName, age, salary, progectCount);
                                         departamentManagers.Serialize();
+                                        Console.WriteLine("Запись успешно выполнена!");
                                     }
                                     else
                                     {
